@@ -11,7 +11,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtils {
 	public static FileInputStream fi;
-
 	public static XSSFWorkbook wb;
 	public static XSSFSheet ws;
 	public static XSSFRow row;
@@ -44,7 +43,7 @@ public class ExcelUtils {
 		fi = new FileInputStream(xFile);
 		// Initialize the Work Book
 		wb = new XSSFWorkbook(fi);
-		// Get the last row.
+		// Get the last row from sheet
 		ws = wb.getSheet(sheetName);
 
 		row = ws.getRow(rowNo);
