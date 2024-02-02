@@ -9,22 +9,22 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class TestBase {
 
 	public static WebDriver driver;
-	public Browsers DEFAULT_BROWSER = Browsers.EDGE;
+	public Browsers DEFAULT_BROWSER = Browsers.GOOGLE_CHROME;
 
 	public void launchBrowser() {
 		switch (DEFAULT_BROWSER) {
 		case GOOGLE_CHROME:
-			WebDriverManager.chromedriver().setup();
+			//WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 			break;
 
 		case EDGE:
-			WebDriverManager.edgedriver().setup();
+			//WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
 			break;
 
 		case FIREFOX:
-			WebDriverManager.firefoxdriver().setup();
+			//WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 			break;
 
