@@ -26,7 +26,7 @@ public class MyAccountTest extends TestBase {
 	public void validateLoginWithValidCredential() {
 		yourStore.clickMyAccountBtn();
 		accountLogin=yourStore.clickLoginBtn();
-		myAccount=accountLogin.loginToPortal("riti@gmail.com", "Password2");
+		myAccount=accountLogin.loginToPortal(prop.getProperty("email"),prop.getProperty("password"));
 		sf.assertEquals(myAccount.getMyAccountText(), "My Account");
 		sf.assertAll();
 	}

@@ -1,4 +1,9 @@
 package com.pivotcoachingacademy.Base;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -10,6 +15,22 @@ public class TestBase {
 
 	public static WebDriver driver;
 	public Browsers DEFAULT_BROWSER = Browsers.GOOGLE_CHROME;
+	private FileInputStream fileInputStream;
+	protected Properties prop;
+	
+	public TestBase() {
+		prop=new Properties();
+		try {
+			fileInputStream = new FileInputStream("./src\\main\\java\\com\\pivotcoachingacademy\\config\\config.properties");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		try {
+		prop.load(fileInputStream);}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void launchBrowser() {
 		switch (DEFAULT_BROWSER) {

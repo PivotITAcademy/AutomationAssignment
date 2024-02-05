@@ -68,4 +68,16 @@ public class ExcelUtils {
 		return data;
 
 	}
+	
+	public String[][] getDataFromExcelFile(String file,String sheet) throws Exception {
+		int rowCount = ExcelUtils.getRowCount(file, sheet);
+		int columnCount = ExcelUtils.getColumnCount(file, sheet, rowCount);
+		String[][] virtualSheet = new String[rowCount][columnCount];
+		for (int i = 1; i <= rowCount; i++) {
+			for (int j = 0; j < columnCount; j++) {
+				virtualSheet[i - 1][j] = ExcelUtils.getCellValue(file,sheet, i, j);
+			}
+		}
+		return virtualSheet;
+	}
 }

@@ -29,11 +29,13 @@ public class AccountLoginTest extends TestBase {
 
 	@Test(dataProvider = "invalidCredentialForLogin")
 	public void validateLoginWithInvalidCredential(String email, String password) {
+
 		yourStore.clickMyAccountBtn();
 		accountLogin = yourStore.clickLoginBtn();
 		accountLogin.loginToPortal(email, password);
 		sf.assertEquals(accountLogin.unsuccessfulLoginMessage(),
 				"Warning: No match for E-Mail Address and/or Password.");
+
 		sf.assertAll();
 
 	}
@@ -62,7 +64,8 @@ public class AccountLoginTest extends TestBase {
 		}
 		return virtualSheet;
 	}
-    @Test
+
+	@Test
 	public void validateForgottenPassword() {
 		yourStore.clickMyAccountBtn();
 		accountLogin = yourStore.clickLoginBtn();
