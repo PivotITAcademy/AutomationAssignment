@@ -1,4 +1,4 @@
-package com.pivotcoachingacademy.Utils;
+package com.pivotcoachingacademy.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

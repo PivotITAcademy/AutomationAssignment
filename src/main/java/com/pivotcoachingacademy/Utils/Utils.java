@@ -1,4 +1,4 @@
-package com.pivotcoachingacademy.Utils;
+package com.pivotcoachingacademy.utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,9 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
-import com.pivotcoachingacademy.Base.TestBase;
+import com.pivotcoachingacademy.base.TestBase;
+
+
 
 public class Utils extends TestBase {
 
