@@ -6,12 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
 import com.pivotcoachingacademy.Base.TestBase;
-
 public class Utils extends TestBase {
 
 	public static int getRandomInteger(int length) {

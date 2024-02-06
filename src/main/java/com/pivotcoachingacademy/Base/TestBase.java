@@ -1,6 +1,10 @@
 package com.pivotcoachingacademy.Base;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import com.pivotcoachingacademy.Browsers.Browsers;
@@ -12,9 +16,11 @@ public class TestBase {
 	public Browsers DEFAULT_BROWSER = Browsers.EDGE;
 
 	public void launchBrowser() {
+		
 		switch (DEFAULT_BROWSER) {
 		case GOOGLE_CHROME:
 			WebDriverManager.chromedriver().setup();
+			
 			driver = new ChromeDriver();
 			break;
 
@@ -34,7 +40,7 @@ public class TestBase {
 		}
 
 		driver.manage().window().maximize();
-
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		// Launch a page
 		driver.get("https://naveenautomationlabs.com/opencart/index.php?route=common/home");
 
