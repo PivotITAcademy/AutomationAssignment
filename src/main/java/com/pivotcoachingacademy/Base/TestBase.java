@@ -1,4 +1,7 @@
 package com.pivotcoachingacademy.Base;
+
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -34,15 +37,17 @@ public class TestBase {
 		}
 
 		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		// Launch a page
-		driver.get("https://naveenautomationlabs.com/opencart/index.php?route=common/home");
-
+		// driver.get("https://naveenautomationlabs.com/opencart/index.php?route=common/home");
+		driver.get("https://naveenautomationlabs.com/opencart/index.php?route=account/return/add");
 	}
 
 	public void quitBrowser() {
 		// closing the browser
-		driver.close();
+		driver.quit();
 	}
 
 }
