@@ -4,6 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 import com.pivotcoachingacademy.Base.TestBase;
 import com.pivotcoachingacademy.pages.AccountLogin;
 import com.pivotcoachingacademy.pages.AccountLogout;
@@ -35,12 +36,12 @@ public class MyAccountTest extends TestBase {
 	public void validateLoginAfterSuccessfulLogoutFromSideNavigation() {
 		yourStore.clickMyAccountBtn();
 		accountLogin = yourStore.clickLoginBtn();
-		myAccount = accountLogin.loginToPortal("riti@gmail.com", "Password2");
+		myAccount = accountLogin.loginToPortal(prop.getProperty("email"),prop.getProperty("password"));
 		myAccount.clickMyAccountBtn();
 		accountLogout = myAccount.clickLogoutBtn();
 		sf.assertEquals(accountLogout.getTextForAccountLogout(), "Account Logout");
 		accountLogin = accountLogout.clickOnSideNavLogin();
-		myAccount = accountLogin.loginToPortal("riti@gmail.com", "Password2");
+		myAccount = accountLogin.loginToPortal(prop.getProperty("email"),prop.getProperty("password"));
 		sf.assertEquals(myAccount.getMyAccountText(), "My Account");
 		sf.assertAll();
 	}

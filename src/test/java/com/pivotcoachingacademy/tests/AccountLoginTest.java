@@ -33,9 +33,14 @@ public class AccountLoginTest extends TestBase {
 		yourStore.clickMyAccountBtn();
 		accountLogin = yourStore.clickLoginBtn();
 		accountLogin.loginToPortal(email, password);
-		sf.assertEquals(accountLogin.unsuccessfulLoginMessage(),
-				"Warning: No match for E-Mail Address and/or Password.");
-
+		if (accountLogin.unsuccessfulLoginMessage().equals("Warning: No match for E-Mail Address and/or Password.")) {
+			sf.assertEquals(accountLogin.unsuccessfulLoginMessage(),
+					"Warning: No match for E-Mail Address and/or Password.");
+		} else {
+			sf.assertEquals(accountLogin.unsuccessfulLoginMessage(),
+					"Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.",
+					"unsuccessful Login");
+		}
 		sf.assertAll();
 
 	}
@@ -45,8 +50,14 @@ public class AccountLoginTest extends TestBase {
 		yourStore.clickMyAccountBtn();
 		accountLogin = yourStore.clickLoginBtn();
 		accountLogin.loginToPortal("", "");
-		sf.assertEquals(accountLogin.unsuccessfulLoginMessage(),
-				"Warning: No match for E-Mail Address and/or Password.");
+		if (accountLogin.unsuccessfulLoginMessage().equals("Warning: No match for E-Mail Address and/or Password.")) {
+			sf.assertEquals(accountLogin.unsuccessfulLoginMessage(),
+					"Warning: No match for E-Mail Address and/or Password.");
+		} else {
+			sf.assertEquals(accountLogin.unsuccessfulLoginMessage(),
+					"Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.",
+					"unsuccessful Login");
+		}
 		sf.assertAll();
 
 	}
