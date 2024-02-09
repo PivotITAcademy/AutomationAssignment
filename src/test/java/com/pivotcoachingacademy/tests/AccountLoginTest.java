@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 import com.pivotcoachingacademy.Base.TestBase;
 import com.pivotcoachingacademy.Utils.ExcelUtils;
 import com.pivotcoachingacademy.pages.AccountLogin;
@@ -12,6 +13,7 @@ import com.pivotcoachingacademy.pages.AccountLogout;
 import com.pivotcoachingacademy.pages.ForgotYourPassword;
 import com.pivotcoachingacademy.pages.MyAccount;
 import com.pivotcoachingacademy.pages.YourStore;
+
 
 public class AccountLoginTest extends TestBase {
 	YourStore yourStore;

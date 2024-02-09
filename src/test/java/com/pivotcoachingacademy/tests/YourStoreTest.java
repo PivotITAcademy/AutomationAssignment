@@ -5,6 +5,8 @@ import org.testng.annotations.BeforeMethod;
 import com.pivotcoachingacademy.Base.TestBase;
 import com.pivotcoachingacademy.pages.YourStore;
 
+
+
 public class YourStoreTest extends TestBase {
 	YourStore yourStore;
 	
@@ -14,7 +16,7 @@ public class YourStoreTest extends TestBase {
 		yourStore = new YourStore();
 	}
 
-	
+
 
 	@AfterMethod
 	public void tearDown() {
