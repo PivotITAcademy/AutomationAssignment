@@ -1,4 +1,4 @@
-package com.pivotcoachingacademy.utils;
+package com.pivotcoachingacademy.Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,10 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
-import com.pivotcoachingacademy.base.TestBase;
-
-
+import com.pivotcoachingacademy.Base.TestBase;
 
 public class Utils extends TestBase {
 
@@ -49,7 +46,8 @@ public class Utils extends TestBase {
 	public static void takeScreenshot(String testName) {
 		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 		// wrapping driver with takescreenshot interface and then calling
-		// getScreenshotAs method which takes type of output as argument which is file type
+		// getScreenshotAs method which takes type of output as argument which is file
+		// type
 		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
 			// copying file from random memory to the local memory(we are storing in folder
