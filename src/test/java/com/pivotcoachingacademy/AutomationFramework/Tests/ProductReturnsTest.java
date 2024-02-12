@@ -11,15 +11,12 @@ import com.pivotcoachingacademy.Pages.ProductReturns;
 
 
 public class ProductReturnsTest extends TestBase {
-//	public YourStore yourStorePage;
-//	public AccountLogin loginPage;
-//	public MyAccount myAccountPage;
-//	public SideBar sideBarPage;
 	public ProductReturns productReturnPage;
 	public ProductReturnConfirmation productReturnConfirmPage;
 	@BeforeMethod
 	public void setUp() {
 		launchBrowser();
+		driver.get("https://naveenautomationlabs.com/opencart/index.php?route=account/return/add");
 		productReturnPage = new ProductReturns();
 	}
 
@@ -109,7 +106,16 @@ public class ProductReturnsTest extends TestBase {
 		String errorMsg=productReturnPage.getOrderIdValidationErrorMessage("Nisha", "Mohandas", "test@gmail.com","123456789", "", "iphone", "KL3FR");
 		Assert.assertEquals(errorMsg, "Order ID required!");
 	}
-
+	@Test
+	public void validateOrderDate() {
+		String returnedDate=productReturnPage.datePicker("2025-02-20", "yyyy-MM-dd");
+		Assert.assertEquals(returnedDate, "2025-02-20","Wrong Date fetched");
+	}
+	@Test
+	public void validateOrderDateField() {
+		String returnedDate=productReturnPage.enterOrderDate("2015-02-20");
+		Assert.assertEquals(returnedDate, "2015-02-20","Wrong Date fetched");
+	}
 	@Test
 	public void validateProductNameWithValidInput() {
 		productReturnConfirmPage=productReturnPage.inputDataToFieldsAndSubmit("Nisha", "Mohandas", "nisha@gmail.com", "123456789", "14568", "iphone", "KL3FR");

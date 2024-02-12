@@ -1,16 +1,19 @@
 package com.pivotcoachingacademy.Pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.pivotcoachingacademy.Base.TestBase;
+import com.pivotcoachingacademy.Utils.Utils;
 
 public class ProductReturns extends TestBase {
 	public ProductReturns() {
 		PageFactory.initElements(driver, this);
 	}
-
+	int tarDay=1;
 	@FindBy(id = "input-firstname")
 	private WebElement firstNameTxtBx;
 
@@ -22,7 +25,7 @@ public class ProductReturns extends TestBase {
 	private WebElement telephoneTxtBx;
 	@FindBy(id = "input-order-id")
 	private WebElement orderIdTxtBx;
-	@FindBy(id = "input-date-ordered")
+	@FindBy(css = "input[name='date_ordered']")
 	private WebElement orderDateSelectionBx;
 	@FindBy(id = "input-product")
 	private WebElement productNameTxtBx;
@@ -30,6 +33,8 @@ public class ProductReturns extends TestBase {
 	private WebElement productCodeTxtBx;
 	@FindBy(id = "input-quantity")
 	private WebElement quantityTxtBx;
+	@FindBy(css = "#input-date-ordered+span.input-group-btn")
+	private WebElement orderDateButton;
 	@FindBy(css = "form[class='form-horizontal']>fieldset:nth-of-type(2)>div:nth-of-type(4) div[class='radio']:nth-of-type(1) input")
 	private WebElement deadOnArrivalRadioBtn;
 	@FindBy(css = "form[class='form-horizontal']>fieldset:nth-of-type(2)>div:nth-of-type(4) div[class='radio']:nth-of-type(2) input")
@@ -50,22 +55,31 @@ public class ProductReturns extends TestBase {
 	private WebElement submitBtn;
 
 //ErrorMessage WebElements
-	@FindBy(css = "form[class='form-horizontal']>fieldset:nth-of-type(1)>div:first-of-type>div>div")
+	@FindBy(css = "#input-firstname+div.text-danger")
 	private WebElement firstNameErrorMsg;
-	@FindBy(css = "form[class='form-horizontal']>fieldset:nth-of-type(1)>div:nth-of-type(2)>div>div")
+	@FindBy(css = "#input-lastname+div.text-danger")
 	private WebElement lastNameErrorMsg;
-	@FindBy(css = "form[class='form-horizontal']>fieldset:nth-of-type(1)>div:nth-of-type(3)>div>div")
+	@FindBy(css = "#input-email+div.text-danger")
 	private WebElement emailIdErrorMsg;
-	@FindBy(css = "form[class='form-horizontal']>fieldset:nth-of-type(1)>div:nth-of-type(4)>div>div")
+	@FindBy(css = "input[name='telephone']+div.text-danger")
 	private WebElement telephoneErrorMsg;
-	@FindBy(css = "form[class='form-horizontal']>fieldset:nth-of-type(1)>div:nth-of-type(5)>div>div")
+	@FindBy(css = "input[name='order_id']+div.text-danger")
 	private WebElement orderIdErrorMsg;
-	@FindBy(css = "form[class='form-horizontal']>fieldset:nth-of-type(2)>div:nth-of-type(1)>div>div")
+	@FindBy(css = "input[name='product_id']+div.text-danger")
 	private WebElement productNameErrorMsg;
-	@FindBy(css = "form[class='form-horizontal']>fieldset:nth-of-type(2)>div:nth-of-type(2)>div>div")
+	@FindBy(css = "#input-model+div.text-danger")
 	private WebElement productCodeErrorMsg;
 	@FindBy(css = "form[class='form-horizontal']>fieldset:nth-of-type(2)>div:nth-of-type(4) div:nth-of-type(6)")
 	private WebElement resonErrorMsg;
+
+	@FindBy(css = "div.datepicker")
+	private WebElement datePickerPopUp;
+	@FindBy(xpath = "(//table[@class='table-condensed'])[1]//th[@class='prev']")
+	private WebElement datePcikerLeftArrow;
+	@FindBy(xpath = "(//table[@class='table-condensed'])[1]//th[@class='picker-switch']")
+	private WebElement datePcikerMonthAndYear;
+	@FindBy(xpath = "(//table[@class='table-condensed'])[1]//th[@class='next']")
+	private WebElement datePcikerRightArrow;
 
 	public void enterFirstName(String firstName) {
 		firstNameTxtBx.sendKeys(firstName);
@@ -87,8 +101,12 @@ public class ProductReturns extends TestBase {
 		orderIdTxtBx.sendKeys(orderId);
 	}
 
-	public void enterOrderDate(String date) {
+	public String enterOrderDate(String date) {
 		orderDateSelectionBx.sendKeys(date);
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//		String dateValue = (String) js.executeScript("return arguments[0].value;", orderDateSelectionBx);
+
+		return orderDateSelectionBx.getAttribute("value");
 	}
 
 	public void enterProductName(String productName) {
@@ -105,6 +123,10 @@ public class ProductReturns extends TestBase {
 
 	public void enterFaultyOrOtherReason(String reason) {
 		faultyTextArea.sendKeys(reason);
+	}
+
+	public void clickOnorderDateBtn() {
+		orderDateButton.click();
 	}
 
 	public void clickOnDeadOnArrivalRadioBtn() {
@@ -181,10 +203,8 @@ public class ProductReturns extends TestBase {
 		return productCodeErrorMsg.getText();
 	}
 
-
-
-	public String getProductReturnReasonErrorMessage(String firstName, String lastname, String email,
-			String telephone, String orderId, String productName, String productCode) {
+	public String getProductReturnReasonErrorMessage(String firstName, String lastname, String email, String telephone,
+			String orderId, String productName, String productCode) {
 		enterFirstName(firstName);
 		enterLastName(lastname);
 		enterEmailId(email);
@@ -210,5 +230,16 @@ public class ProductReturns extends TestBase {
 		clickOnYesRadioBtn();
 		clickOnSubmitBtn();
 		return new ProductReturnConfirmation();
+	}
+
+	public String datePicker(String tarDate, String formatDate) {
+//		String date=
+//				"//div[@class='datepicker-days']//td[not(contains(@class,'old') or contains(@class,'new')) and contains(text(),"
+//						+ tarDay + ")]";
+		Utils.datePicker(orderDateButton, datePickerPopUp,datePcikerMonthAndYear, datePcikerLeftArrow, datePcikerRightArrow,tarDate, formatDate);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		String dateValue = (String) js.executeScript("return arguments[0].value;", orderDateSelectionBx);
+
+		return dateValue;
 	}
 }

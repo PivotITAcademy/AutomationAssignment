@@ -6,11 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import com.pivotcoachingacademy.Browsers.Browsers;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
-
+	public static WebDriverWait wait;
 	public static WebDriver driver;
 	public Browsers DEFAULT_BROWSER = Browsers.EDGE;
 
@@ -42,7 +44,7 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		// Launch a page
 		// driver.get("https://naveenautomationlabs.com/opencart/index.php?route=common/home");
-		driver.get("https://naveenautomationlabs.com/opencart/index.php?route=account/return/add");
+		
 	}
 
 	public void quitBrowser() {
