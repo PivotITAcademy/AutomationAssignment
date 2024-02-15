@@ -13,9 +13,11 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import com.pivotcoachingacademy.Base.TestBase;
 
@@ -54,7 +56,8 @@ public class Utils extends TestBase {
 	public static void takeScreenshot(String testName) {
 		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 		// wrapping driver with takescreenshot interface and then calling
-		// getScreenshotAs method which takes type of output as argument which is file type
+		// getScreenshotAs method which takes type of output as argument which is file
+		// type
 		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
 			// copying file from random memory to the local memory(we are storing in folder
