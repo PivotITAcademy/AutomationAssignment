@@ -15,7 +15,8 @@ import com.pivotcoachingacademy.pages.MyAccount;
 import com.pivotcoachingacademy.pages.YourStore;
 
 
-public class AccountLoginTest extends TestBase {
+
+public class AccountLoginTest extends TestBase{
 	YourStore yourStore;
 	AccountLogin accountLogin;
 	MyAccount myAccount;
