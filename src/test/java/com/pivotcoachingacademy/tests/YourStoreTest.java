@@ -5,22 +5,10 @@ import org.testng.annotations.BeforeMethod;
 import com.pivotcoachingacademy.Base.TestBase;
 import com.pivotcoachingacademy.pages.YourStore;
 
-
-
-public class YourStoreTest extends TestBase {
-	YourStore yourStore;
+public class YourStoreTest extends TestBase{
 	
-	@BeforeMethod
-	public void setUp() {
-		launchBrowser();
-		yourStore = new YourStore();
-	}
-
-
-
-	@AfterMethod
-	public void tearDown() {
-		quitBrowser();
-	}
-
 }
+
+
+
+
